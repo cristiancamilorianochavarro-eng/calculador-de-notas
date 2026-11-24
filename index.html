@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema de notas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="flash" aria-hidden="true"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <main class="page" id="pagina">
+    <header class="masthead">
+      <h1>Sistema de notas</h1>
+      <p>Escribe tus cinco notas, de 1.0 a 5.0. Se aprueba con 3.5 o más.</p>
+    </header>
+
+    <div class="layout">
+      <form id="form-notas" class="sheet" novalidate>
+        <fieldset class="group">
+          <legend>Estudiante</legend>
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="given-name" required>
+            <p class="error" id="error-nombre" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="apellido">Apellido</label>
+            <input id="apellido" name="apellido" type="text" autocomplete="family-name" required>
+            <p class="error" id="error-apellido" role="alert"></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Notas</legend>
+          <div class="notas-grid">
+            <div class="field">
+              <label for="nota1">Primera nota</label>
+              <input id="nota1" name="nota1" type="text" inputmode="decimal" placeholder="0.0" required>
+              <p class="error" id="error-nota1" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="nota2">Segunda nota</label>
+              <input id="nota2" name="nota2" type="text" inputmode="decimal" placeholder="0.0" required>
+              <p class="error" id="error-nota2" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="nota3">Tercera nota</label>
+              <input id="nota3" name="nota3" type="text" inputmode="decimal" placeholder="0.0" required>
+              <p class="error" id="error-nota3" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="nota4">Cuarta nota</label>
+              <input id="nota4" name="nota4" type="text" inputmode="decimal" placeholder="0.0" required>
+              <p class="error" id="error-nota4" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="nota5">Quinta nota</label>
+              <input id="nota5" name="nota5" type="text" inputmode="decimal" placeholder="0.0" required>
+              <p class="error" id="error-nota5" role="alert"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Calcular promedio</button>
+          <button type="button" id="btn-limpiar" class="btn btn-ghost">Borrar todo</button>
+        </div>
+      </form>
+
+      <section class="report" id="reporte" aria-live="polite" aria-labelledby="titulo-resultado">
+        <h2 id="titulo-resultado" class="visually-hidden">Resultado</h2>
+
+        <div id="vacio" class="empty">
+          <p>Aquí se revela tu promedio cuando calcules tus notas.</p>
+        </div>
+
+        <div id="resultado" class="result" hidden>
+          <p class="who" id="res-nombre"></p>
+          <p class="avg-label">Promedio</p>
+          <p class="avg"><span id="res-promedio" class="avg-number">0.00</span></p>
+
+          <div class="verdict-wrap">
+            <p class="stamp" id="res-veredicto"></p>
+            <p class="quip" id="res-frase"></p>
+          </div>
+
+          <div class="chart" id="grafica" role="img" aria-label="Notas comparadas con la nota mínima para aprobar"></div>
+
+          <dl class="counts">
+            <div>
+              <dt>Notas aprobadas</dt>
+              <dd id="res-aprobadas">0</dd>
+            </div>
+            <div>
+              <dt>Notas reprobadas</dt>
+              <dd id="res-reprobadas">0</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
